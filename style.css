@@ -60,6 +60,8 @@ header.scrolled {
     height: 70px;
     width: auto;
     display: block;
+    mix-blend-mode: multiply;
+    /* Blends logo background perfectly with page white */
 }
 
 nav ul {
@@ -124,11 +126,27 @@ nav ul li a:hover {
     font-size: 4.5rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
-    background: linear-gradient(to right, var(--primary-cyan), var(--primary-orange));
+    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-orange), var(--primary-cyan));
+    background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
+    animation: gradient-move 3.5s linear infinite;
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .hero p {
@@ -186,8 +204,10 @@ nav ul li a:hover {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .service-card {
@@ -231,7 +251,7 @@ nav ul li a:hover {
 
 .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
@@ -365,12 +385,86 @@ footer {
     font-size: 0.9rem;
 }
 
-@media (max-width: 768px) {
+/* Responsive Design */
+
+/* Tablets */
+@media (max-width: 1024px) {
     .hero h1 {
-        font-size: 3rem;
+        font-size: 3.8rem;
+    }
+
+    .services,
+    .works {
+        padding: 80px 5%;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .works-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    header {
+        padding: 0.8rem 5%;
+    }
+
+    .main-logo {
+        height: 50px;
     }
 
     nav {
         display: none;
+        /* In a real app we'd add a hamburger menu here */
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .services,
+    .works {
+        padding: 60px 5%;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .works-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .cta-btn {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 24px;
     }
 }
